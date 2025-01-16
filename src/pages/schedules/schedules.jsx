@@ -1,66 +1,109 @@
-import React, { useState } from 'react';
-import { Calendar, Modal, Button, Input } from 'rsuite';
+import React, { useState, useEffect } from 'react';
+import { Calendar, Modal, Button } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
 import Sidebar from '../../components/sidebars';
-const schedules = () => {
+
+const Schedules = () => {
   const [events, setEvents] = useState([
     { date: new Date(2025, 0, 20), title: 'Meeting with John' },
     { date: new Date(2025, 0, 25), title: 'Doctor Appointment' },
   ]);
   const [showModal, setShowModal] = useState(false);
-  const [newEvent, setNewEvent] = useState('');
+  const [scheduleData, setScheduleData] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  // Handle adding new event
-  const handleAddEvent = () => {
-    if (selectedDate && newEvent) {
-      setEvents([...events, { date: selectedDate, title: newEvent }]);
-      setNewEvent('');
-      setShowModal(false);
-    }
+  const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzeWVueXJ6bnN0c3R5bGt4Y2JvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNjQxMDU5NiwiZXhwIjoyMDUxOTg2NTk2fQ.NY0eG-1sEEjtF_y_x3MZBF7_E3ymykog-8u0ZiWDDcI';
+
+  // Function to fetch data from Supabase API
+  const fetchScheduleData = async (date) => {
+    const formattedDate = date.toISOString().split('T')[0]; // format date as 'YYYY-MM-DD'
+    const url = `https://psyenyrznststylkxcbo.supabase.co/functions/v1/daily_schedule?date=${formattedDate}`;
+  
+    try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${JWT_TOKEN}`,
+          },
+        });
+    
+        // Check if the response is OK (status code 200)
+        if (!response.ok) {
+          console.error('Error fetching data:', response.status, response.statusText);
+          return;
+        }
+    
+        const data = await response.json();
+        setScheduleData(data); // Save the fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+  };
+  
+
+  // Handle when a date is selected
+  const handleSelectDate = (date) => {
+    console.log('Selected date:', date);
+    setSelectedDate(date);
+    fetchScheduleData(date); // Fetch schedule data for the selected date
+    setShowModal(true); // Show modal when a date is selected
   };
 
   return (
-    <div className='grid grid-cols-5 gap-4'>
-      <Sidebar/>
-      <div className='col-span-4'>
-            <Calendar
-                bordered
-                events={events}
-                renderCell={(date) => {
-                const event = events.find((event) => event.date.toDateString() === date.toDateString());
-                return event ? <div>{event.title}</div> : null;
-                }}
-                onSelectDate={(date) => {
-                setSelectedDate(date);
-                setShowModal(true); // Show modal when a date is selected
-                }}
-            />   
+    <div className="grid grid-cols-5 gap-4">
+      <Sidebar />
+      <div className="col-span-4">
+        <div>
+          <Calendar
+            bordered
+            events={events}
+            renderCell={(date) => {
+              const event = events.find(
+                (event) => event.date.toDateString() === date.toDateString()
+              );
+              return event ? <div>{event.title}</div> : null;
+            }}
+            onSelect={handleSelectDate} // Use onSelect instead of onSelectDate
+          />
+        </div>
+        <div>
+          <p>Hello world</p>
+        </div>
       </div>
-      
 
-
-
-
-      {/* Modal for adding a new event */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      {/* Modal for showing schedule data */}
+      <Modal open={showModal} onClose={() => setShowModal(false)}>
         <Modal.Header>
-          <Modal.Title>Add New Event</Modal.Title>
+          <Modal.Title>Schedule for {selectedDate ? selectedDate.toDateString() : ''}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Input
-            value={newEvent}
-            onChange={(value) => setNewEvent(value)}
-            placeholder="Enter event title"
-          />
+          {scheduleData ? (
+            <div>
+              <p>Date: {scheduleData.date}</p>
+              <p>Count: {scheduleData.count}</p>
+              {scheduleData.data.map((item) => (
+                <div key={item.id}>
+                  <p>Working Hours: {item.working_hours}</p>
+                  <p>Break Hours: {item.break_hours}</p>
+                  <p>Clock In: {item.clock_in_time}</p>
+                  <p>Clock Out: {item.clock_out_time}</p>
+                  <p>Day: {item.day}</p>
+                  <p>Status: {item.is_active === 'true' ? 'Active' : 'Inactive'}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleAddEvent} appearance="primary">Add Event</Button>
-          <Button onClick={() => setShowModal(false)} appearance="subtle">Cancel</Button>
+          <Button onClick={() => setShowModal(false)} appearance="subtle">
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
   );
 };
 
-export default schedules;
+export default Schedules;
