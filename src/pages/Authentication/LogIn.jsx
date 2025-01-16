@@ -1,5 +1,5 @@
 import React from 'react'
-import myPic from '../assets/img/squeeze.png'
+import myPic from '../../assets/img/squeeze.png'
 const LogIn = () => {
   return (
     <div>
