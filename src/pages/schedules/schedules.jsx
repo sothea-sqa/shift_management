@@ -16,29 +16,34 @@ const Schedules = () => {
 
   // Function to fetch data from Supabase API
   const fetchScheduleData = async (date) => {
-    const formattedDate = date.toISOString().split('T')[0]; // format date as 'YYYY-MM-DD'
-    const url = `https://psyenyrznststylkxcbo.supabase.co/functions/v1/daily_schedule?date=${formattedDate}`;
+    // Convert the selected date to UTC
+    const utcDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+      .toISOString()
+      .split('T')[0]; // Format as 'YYYY-MM-DD'
   
+    const url = `https://psyenyrznststylkxcbo.supabase.co/functions/v1/daily_schedule?date=${utcDate}`;
+    
     try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${JWT_TOKEN}`,
-          },
-        });
-    
-        // Check if the response is OK (status code 200)
-        if (!response.ok) {
-          console.error('Error fetching data:', response.status, response.statusText);
-          return;
-        }
-    
-        const data = await response.json();
-        setScheduleData(data); // Save the fetched data
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${JWT_TOKEN}`,
+        },
+      });
+  
+      if (!response.ok) {
+        console.error('Error fetching data:', response.status, response.statusText);
+        return;
       }
+  
+      const data = await response.json();
+      console.log('Fetched data:', data); // Debug log
+      setScheduleData(data);
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+    }
   };
+  
   
 
   // Handle when a date is selected
@@ -78,20 +83,28 @@ const Schedules = () => {
         </Modal.Header>
         <Modal.Body>
           {scheduleData ? (
-            <div>
-              <p>Date: {scheduleData.date}</p>
-              <p>Count: {scheduleData.count}</p>
-              {scheduleData.data.map((item) => (
-                <div key={item.id}>
-                  <p>Working Hours: {item.working_hours}</p>
-                  <p>Break Hours: {item.break_hours}</p>
-                  <p>Clock In: {item.clock_in_time}</p>
-                  <p>Clock Out: {item.clock_out_time}</p>
-                  <p>Day: {item.day}</p>
-                  <p>Status: {item.is_active === 'true' ? 'Active' : 'Inactive'}</p>
-                </div>
-              ))}
-            </div>
+           <div>
+            <p>Date: {scheduleData.date}</p>
+            <p>Count: {scheduleData.morningCount}</p>
+            {scheduleData.data.map((item) => (
+              <div key={item.id}>
+                <p>Working Hours: {item.working_hours}</p>
+                <p>Break Hours: {item.break_hours}</p>
+                <p>Clock In: {item.clock_in_time}</p>
+                <p>Clock Out: {item.clock_out_time}</p>
+                <p>Day: {item.day}</p>
+                <p>Status: {item.is_active === 'true' ? 'Active' : 'Inactive'}</p>
+                <p>
+                  User Name :  &nbsp;
+                  
+                            {typeof item.user_name === 'object' 
+                              ? `${item.user_name.first_name} ${item.user_name.last_name}` 
+                              : item.user_name}
+                </p>
+             </div>
+           ))}
+         </div>
+         
           ) : (
             <p>Loading...</p>
           )}
