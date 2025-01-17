@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { signUp } from '../../api/auth/signUp';
+import './SignUpForm.css'; // Import the CSS file
 
 const SignUpForm = () => {
   const [email, setEmail] = useState('');
@@ -17,39 +18,42 @@ const SignUpForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="First Name"
-        value={metadata.first_name}
-        onChange={(e) => setMetadata({ ...metadata, first_name: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="Last Name"
-        value={metadata.last_name}
-        onChange={(e) => setMetadata({ ...metadata, last_name: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="Phone Number"
-        value={metadata.phone_number}
-        onChange={(e) => setMetadata({ ...metadata, phone_number: e.target.value })}
-      />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div className="sign-up-container">
+      <h2>Sign Up</h2>
+      <form className="sign-up-form" onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="First Name"
+          value={metadata.first_name}
+          onChange={(e) => setMetadata({ ...metadata, first_name: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={metadata.last_name}
+          onChange={(e) => setMetadata({ ...metadata, last_name: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Phone Number"
+          value={metadata.phone_number}
+          onChange={(e) => setMetadata({ ...metadata, phone_number: e.target.value })}
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
   );
 };
 
