@@ -5,7 +5,7 @@ import './SignUpForm.css'; // Import the CSS file
 const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [metadata, setMetadata] = useState({ first_name: '', last_name: '', phone_number: '', role: 'Manager' });
+  const [metadata, setMetadata] = useState({ first_name: '', last_name: '', phone_number: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
