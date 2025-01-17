@@ -1,15 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LogIn from './Authentication/LogIn';
-import Navbar from './Home/components/Navbar';
-
-
+import Schedule from "./pages/schedules/schedules";
+import LogIn from './pages/Authentication/LogIn';
+import Test from './pages/test'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/login' element={<LogIn/>} />
+
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/test" element={<Test />} />
+
+
       </Routes>
     </BrowserRouter>
   );
