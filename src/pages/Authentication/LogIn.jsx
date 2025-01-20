@@ -1,7 +1,9 @@
+
 import React, { useEffect, useState } from 'react';
 import supabase from '../../config/supabaseClient' // Import your supabaseClient.js
 import myPic from '../../assets/img/squeeze.png'
 import { useNavigate } from 'react-router-dom';
+
 const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
