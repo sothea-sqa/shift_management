@@ -1,5 +1,6 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { checkAuthStatus } from './api/auth/logIn';
 import Schedule from "./pages/schedules/schedules";
 import LogIn from './pages/Authentication/LogIn';
 import SignUp from './pages/Authentication/SignUp';
@@ -13,13 +14,62 @@ import InfoSchedule from './pages/schedules/info_schedule';
 import NewShift from './Dashboard/Newshift';
 import ProtectedRoute from './components/ProtectedRoute';
 
+const PublicRoute = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { success, isAuthenticated } = await checkAuthStatus();
+      setIsAuthenticated(isAuthenticated);
+    };
+    checkAuth();
+  }, []);
+
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>;
+  }
+
+  return isAuthenticated ? <Navigate to="/schedule" replace /> : children;
+};
+
+const AuthGuard = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { success, isAuthenticated } = await checkAuthStatus();
+      setIsAuthenticated(isAuthenticated);
+    };
+    checkAuth();
+  }, []);
+
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>;
+  }
+
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+};
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LogIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
+        {/* Public Routes with authentication check */}
+        <Route path="/" element={
+          <PublicRoute>
+            <LogIn />
+          </PublicRoute>
+        } />
+        <Route path="/login" element={
+          <PublicRoute>
+            <LogIn />
+          </PublicRoute>
+        } />
+        <Route path="/signup" element={
+          <PublicRoute>
+            <SignUp />
+          </PublicRoute>
+        } />
         
         {/* Protected Routes */}
         <Route path="/schedule" element={
