@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/test" element={<Test />} />
         <Route path="/shift" element={<Shift />} />
         <Route path="/dash" element={<M_dashboard/>} />
-        <Route path="/infoschedule" element={<InfoSchedule/>} />
+        <Route path="/infoschedule/:date" element={<InfoSchedule/>} />
         
         <Route path="/handlers" element={<Handlers/>} />
         <Route path="/dayoff" element={<DayOff/>} />
