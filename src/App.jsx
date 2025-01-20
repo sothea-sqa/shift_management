@@ -11,28 +11,65 @@ import DayOff from './Dashboard/DayOff';
 import RTO from './Dashboard/RTO';
 import InfoSchedule from './pages/schedules/info_schedule';
 import NewShift from './Dashboard/Newshift';
+import ProtectedRoute from './components/ProtectedRoute';
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path="/" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/schedule" element={<Schedule />} />
         <Route path="/login" element={<LogIn />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/shift" element={<Shift />} />
-        <Route path="/dash" element={<M_dashboard/>} />
-        <Route path="/infoschedule" element={<InfoSchedule/>} />
         
-        <Route path="/handlers" element={<Handlers/>} />
-        <Route path="/dayoff" element={<DayOff/>} />
-        <Route path="/rto" element={<RTO />} />
-        <Route path="/newshift" element={<NewShift />} />
+        {/* Protected Routes */}
+        <Route path="/schedule" element={
+          <ProtectedRoute>
+            <Schedule />
+          </ProtectedRoute>
+        } />
+        <Route path="/test" element={
+          <ProtectedRoute>
+            <Test />
+          </ProtectedRoute>
+        } />
+        <Route path="/shift" element={
+          <ProtectedRoute>
+            <Shift />
+          </ProtectedRoute>
+        } />
+        <Route path="/dash" element={
+          <ProtectedRoute>
+            <M_dashboard/>
+          </ProtectedRoute>
+        } />
+        <Route path="/infoschedule" element={
+          <ProtectedRoute>
+            <InfoSchedule/>
+          </ProtectedRoute>
+        } />
+        <Route path="/handlers" element={
+          <ProtectedRoute>
+            <Handlers/>
+          </ProtectedRoute>
+        } />
+        <Route path="/dayoff" element={
+          <ProtectedRoute>
+            <DayOff/>
+          </ProtectedRoute>
+        } />
+        <Route path="/rto" element={
+          <ProtectedRoute>
+            <RTO />
+          </ProtectedRoute>
+        } />
+        <Route path="/newshift" element={
+          <ProtectedRoute>
+            <NewShift />
+          </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
   );
 };
 
 export default App;
-
