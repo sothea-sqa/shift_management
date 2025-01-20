@@ -1,3 +1,5 @@
+// this file maybe dont need anymore, because we already have superbaseClient.js
+
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(

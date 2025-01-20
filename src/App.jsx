@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Schedule from "./pages/schedules/schedules";
 import LogIn from './pages/Authentication/LogIn';
+import SignUp from './pages/Authentication/SignUp';
 import Test from './pages/test'
 import Shift from "./pages/schedules/shift";
 import M_dashboard from './Dashboard/M_dashboard';
@@ -15,6 +16,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
 
+        <Route path="/" element={<SignUp />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/test" element={<Test />} />

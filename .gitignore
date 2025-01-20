@@ -25,3 +25,4 @@ yarn-error.log*
 package-lock.json  # (Optional: if you prefer yarn.lock, or you don't want to track lock files)
 tailwind.config.js  # (if you don’t want to track configuration, but usually you'd want it)
 postcss.config.js
+postcss.config.cjs
