@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Schedule from "./pages/schedules/schedules";
 import LogIn from './pages/Authentication/LogIn';
 import Test from './pages/test'
-import Shift from "./pages/schedules/shift";
-import M_dashboard from './Dashboard/M_dashboard';
-import Handlers from './Dashboard/Handlers';
-import DayOff from './Dashboard/DayOff';
+
+
 import RTO from './Dashboard/RTO';
 
 import NewShift from './Dashboard/Newshift';
+import ShiftDashboard from './Dashboard/ShiftDashboard';
+import ShiftModal from './ShiftChange/ShiftModal';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -18,14 +19,15 @@ const App = () => {
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/shift" element={<Shift />} />
-        <Route path="/dash" element={<M_dashboard/>} />
+       
+      
 
         
-        <Route path="/handlers" element={<Handlers/>} />
-        <Route path="/dayoff" element={<DayOff/>} />
+       
         <Route path="/rto" element={<RTO />} />
         <Route path="/newshift" element={<NewShift />} />
+        <Route path="/shiftdash" element={<ShiftDashboard />} />
+        <Route path="/shiftmodal" element={<ShiftModal />} />
       </Routes>
     </BrowserRouter>
   );
