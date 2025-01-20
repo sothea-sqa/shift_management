@@ -8,7 +8,7 @@ import M_dashboard from './Dashboard/M_dashboard';
 import Handlers from './Dashboard/Handlers';
 import DayOff from './Dashboard/DayOff';
 import RTO from './Dashboard/RTO';
-
+import InfoSchedule from './pages/schedules/info_schedule';
 import NewShift from './Dashboard/Newshift';
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/test" element={<Test />} />
         <Route path="/shift" element={<Shift />} />
         <Route path="/dash" element={<M_dashboard/>} />
-
+        <Route path="/infoschedule" element={<InfoSchedule/>} />
         
         <Route path="/handlers" element={<Handlers/>} />
         <Route path="/dayoff" element={<DayOff/>} />
