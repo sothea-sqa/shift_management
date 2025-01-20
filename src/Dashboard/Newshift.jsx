@@ -7,7 +7,7 @@ const NewShift = () => {
                 <table class="min-w-full border-spacing-1 divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" class="px-6 py-3  text-left border border-slate-300  text-xs font-medium text-gray-500 uppercase tracking-wider">Staff</th>
+                            <th scope="col" class="px-6 py-3  text-left border border-slate-300 text-xs font-medium text-gray-500 uppercase tracking-wider">Staff</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs border border-slate-300  font-medium text-gray-500 uppercase tracking-wider">6</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs border border-slate-300  font-medium text-gray-500 uppercase tracking-wider">7</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs border border-slate-300  font-medium text-gray-500 uppercase tracking-wider">8</th>
