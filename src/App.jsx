@@ -54,7 +54,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Routes with authentication check */}
+
         <Route path="/" element={
           <PublicRoute>
             <LogIn />
@@ -70,7 +70,7 @@ const App = () => {
             <SignUp />
           </PublicRoute>
         } />
-        
+
         {/* Protected Routes */}
         <Route path="/schedule" element={
           <ProtectedRoute>
