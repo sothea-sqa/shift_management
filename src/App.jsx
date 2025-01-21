@@ -5,12 +5,13 @@ import Schedule from "./pages/schedules/schedules";
 import LogIn from './pages/Authentication/LogIn';
 import SignUp from './pages/Authentication/SignUp';
 import Test from './pages/test'
-
+import ShiftDashboard from './Dashboard/ShiftDashboard';
+import ShiftModal from './ShiftChange/ShiftModal';
 
 import RTO from './Dashboard/RTO';
 import InfoSchedule from './pages/schedules/info_schedule';
 import NewShift from './Dashboard/Newshift';
-<<<<<<< HEAD
+
 import ProtectedRoute from './components/ProtectedRoute';
 
 const PublicRoute = ({ children }) => {
@@ -48,17 +49,16 @@ const AuthGuard = ({ children }) => {
 
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
-=======
-import ShiftDashboard from './Dashboard/ShiftDashboard';
-import ShiftModal from './ShiftChange/ShiftModal';
->>>>>>> khannchy
+
+
+
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
 
-<<<<<<< HEAD
+
         <Route path="/" element={
           <PublicRoute>
             <LogIn />
@@ -121,7 +121,7 @@ const App = () => {
             <NewShift />
           </ProtectedRoute>
         } />
-=======
+
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/test" element={<Test />} />
@@ -130,11 +130,10 @@ const App = () => {
 
         
        
-        <Route path="/rto" element={<RTO />} />
-        <Route path="/newshift" element={<NewShift />} />
+      
         <Route path="/shiftdash" element={<ShiftDashboard />} />
         <Route path="/shiftmodal" element={<ShiftModal />} />
->>>>>>> khannchy
+
       </Routes>
     </BrowserRouter>
   );
