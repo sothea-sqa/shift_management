@@ -1,9 +1,9 @@
 import supabase from '../../config/supabaseClient';
 
-export async function createProfile(id, profileData) {
+export async function createProfile(user_id, profileData) {
   const { data, error } = await supabase
     .from('profiles')
-    .insert([{ id, ...profileData }]);
+    .insert([{ user_id, ...profileData }]); // Use user_id instead of id
 
   if (error) {
     console.error('Error creating profile:', error.message);
