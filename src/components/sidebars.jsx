@@ -1,8 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { logout } from '../api/auth/logout.js'; 
+import supabase from '../config/supabaseClient';
 
 function Sidebar() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [userName, setUserName] = useState('Profile');
+
+  useEffect(() => {
+    async function getUserProfile() {
+      const { data: { session }, error } = await supabase.auth.getSession();
+      
+      if (error || !session?.user) {
+        console.error('Error getting session:', error?.message);
+        return;
+      }
+
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('first_name, last_name')
+        .eq('user_id', session.user.id)
+        .single();
+
+      if (profileError) {
+        console.error('Error fetching profile:', profileError.message);
+        return;
+      }
+
+      if (profile?.first_name) {
+        setUserName(`${profile.first_name} ${profile.last_name || ''}`);
+      }
+    }
+
+    getUserProfile();
+  }, []);
 
   return (
     <div className='bg-[#09326C] w-fit h-screen'>
@@ -39,15 +69,15 @@ function Sidebar() {
 
         {/* Profile Section */}
         <div className='relative'>
-          <button 
+            <button 
             onClick={() => setShowDropdown(!showDropdown)}
             className='flex items-center text-white hover:bg-[#0c4289] p-2 rounded-md w-full'
-          >
+            >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-white">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
             </svg>
-            <span className='ml-2'>Profile</span>
-          </button>
+            <span className='ml-2'>{userName}</span>
+            </button>
 
           {showDropdown && (
             <div className='absolute bottom-full left-0 mb-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5'>
