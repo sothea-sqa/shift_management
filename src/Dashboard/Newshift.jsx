@@ -12,7 +12,7 @@ const NewShift = () => {
           <thead className="bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3 text-left border border-slate-300 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Staff
+               Name
               </th>
               {[...Array(17).keys()].map((i) => (
                 <th
@@ -28,7 +28,7 @@ const NewShift = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             <tr>
               <td className="px-6 py-4 whitespace-nowrap text-sm border border-slate-300 font-medium text-gray-900">
-                M_G
+               
               </td>
               {[...Array(17).keys()].map((i) => (
                 <td

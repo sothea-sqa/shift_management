@@ -7,12 +7,14 @@ import SignUp from './pages/Authentication/SignUp';
 import Test from './pages/test'
 import ShiftDashboard from './Dashboard/ShiftDashboard';
 import ShiftModal from './ShiftChange/ShiftModal';
-
 import RTO from './Dashboard/RTO';
 import InfoSchedule from './pages/schedules/info_schedule';
 import NewShift from './Dashboard/Newshift';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import ShiftRequest from './ShiftChange/ShiftRequest';
+import UserMangement from './pages/UserManagement/UserMangement';
+
 
 const PublicRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -57,8 +59,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-
-
         <Route path="/" element={
           <PublicRoute>
             <LogIn />
@@ -86,54 +86,28 @@ const App = () => {
             <Test />
           </ProtectedRoute>
         } />
-        <Route path="/shift" element={
-          <ProtectedRoute>
-            <Shift />
-          </ProtectedRoute>
-        } />
-        <Route path="/dash" element={
-          <ProtectedRoute>
-            <M_dashboard/>
-          </ProtectedRoute>
-        } />
+     
         <Route path="/infoschedule" element={
           <ProtectedRoute>
             <InfoSchedule/>
           </ProtectedRoute>
         } />
-        <Route path="/handlers" element={
-          <ProtectedRoute>
-            <Handlers/>
-          </ProtectedRoute>
-        } />
-        <Route path="/dayoff" element={
-          <ProtectedRoute>
-            <DayOff/>
-          </ProtectedRoute>
-        } />
+       
+        
         <Route path="/rto" element={
-          <ProtectedRoute>
+       
             <RTO />
-          </ProtectedRoute>
+         
         } />
-        <Route path="/newshift" element={
-          <ProtectedRoute>
-            <NewShift />
-          </ProtectedRoute>
-        } />
-
+        <Route path="/newshift" element={ <NewShift />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/test" element={<Test />} />
-       
-      
-
-        
-       
-      
         <Route path="/shiftdash" element={<ShiftDashboard />} />
         <Route path="/shiftmodal" element={<ShiftModal />} />
-
+        <Route path="/request" element={<ShiftRequest />} />
+        <Route path="/user" element={<UserMangement />} />
+     
       </Routes>
     </BrowserRouter>
   );

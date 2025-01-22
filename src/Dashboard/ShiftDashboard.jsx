@@ -6,13 +6,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Sidebar from '../components/sidebars';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-
 const ShiftDashboard = () => {
   const [selectedShift, setSelectedShift] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [notificationCount, setNotificationCount] = useState(3); // Example: 3 notifications
 
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate(); 
 
   const formattedDate = new Intl.DateTimeFormat('km-KH', {
     weekday: 'long',
@@ -24,11 +23,8 @@ const ShiftDashboard = () => {
 
   const shifts = [
     { time: "07:00-12:00", number: 20, shiftType: "Morning", icon: faSun, bgColor: "bg-red-100" },
-    { time: "08:00-01:00", number: 3, shiftType: "Morning", icon: faSun, bgColor: "bg-red-100" },
     { time: "12:00-05:00", number: 15, shiftType: "Afternoon", icon: faSun, bgColor: "bg-blue-100" },
-    { time: "01:00-06:00", number: 10, shiftType: "Afternoon", icon: faSun, bgColor: "bg-blue-100" },
     { time: "05:00-10:00", number: 8, shiftType: "Evening", icon: faMoon, bgColor: "bg-yellow-100" },
-    { time: "06:00-11:00", number: 5, shiftType: "Evening", icon: faMoon, bgColor: "bg-yellow-100" },
   ];
 
   const ShiftCard = ({ time, number, shiftType, icon, bgColor, onClick }) => (
@@ -96,21 +92,29 @@ const ShiftDashboard = () => {
 
           {selectedShift && (
             <div className="mt-6 p-4 border-t border-gray-300">
-              <h3 className="text-xl font-semibold mt-4">Staff</h3>
-              <table className="min-w-full mt-4 table-auto">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="px-4 py-2 text-left text-gray-600">Name</th>
-                    <th className="px-4 py-2 text-left text-gray-600">Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="px-4 py-2 text-gray-700">khannchy</td>
-                    <td className="px-4 py-2 text-gray-700">7:00-12:00</td>
-                  </tr>
-                </tbody>
-              </table>
+              <h3 className="text-xl font-semibold mt-4">{selectedShift.shiftType}</h3>
+              <table className="min-w-full mt-4 border-spacing-4 table-auto border border-gray-300">
+  <thead className="bg-gray-100">
+    <tr>
+      <th className="px-4 py-2 text-left text-gray-600 border border-gray-300">Name</th>
+      <th className="px-4 py-2 text-left text-gray-600 border border-gray-300">Check In</th>
+      <th className="px-4 py-2 text-left text-gray-600 border border-gray-300">Break Time</th>
+      <th className="px-4 py-2 text-left text-gray-600 border border-gray-300">Check Out</th>
+      <th className="px-4 py-2 text-left text-gray-600 border border-gray-300">Working Hours</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="px-4 py-2 text-gray-700 border border-gray-300"></td>
+      <td className="px-4 py-2 text-gray-700 border border-gray-300"></td>
+      <td className="px-4 py-2 text-gray-700 border border-gray-300"></td>
+      <td className="px-4 py-2 text-gray-700 border border-gray-300"></td>
+      <td className="px-4 py-2 text-gray-700 border border-gray-300"></td>
+    </tr>
+  </tbody>
+</table>
+
             </div>
           )}
         </div>

@@ -47,8 +47,6 @@ const Handlers = () => {
               <thead className="bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3 text-left border border-slate-300 text-xs font-medium text-gray-500 uppercase tracking-wider">Staff</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs border border-slate-300 font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs border border-slate-300 font-medium text-gray-500 uppercase tracking-wider">Date</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs border border-slate-300 font-medium text-gray-500 uppercase tracking-wider">Status</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs border border-slate-300 font-medium text-gray-500 uppercase tracking-wider">Decision</th>
                 </tr>
@@ -56,8 +54,6 @@ const Handlers = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 <tr onClick={handleRowClick} className="cursor-pointer hover:bg-gray-100">
                   <td className="px-6 py-4 whitespace-nowrap text-sm border border-slate-300 font-medium text-gray-900">Alexander Martinez</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm border border-slate-300 text-gray-500"></td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm border border-slate-300 text-gray-500"></td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm border border-slate-300 text-gray-500">
                     <button 
                       onClick={handleButtonClick} 
