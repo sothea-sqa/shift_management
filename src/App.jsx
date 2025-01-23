@@ -14,6 +14,8 @@ import NewShift from './Dashboard/Newshift';
 import ProtectedRoute from './components/ProtectedRoute';
 import ShiftRequest from './ShiftChange/ShiftRequest';
 import UserMangement from './pages/UserManagement/UserMangement';
+import UserProfile from './pages/UserManagement/UserProfile';
+import ShiftManagement from './ShiftManagement/ShiftManagement';
 
 
 const PublicRoute = ({ children }) => {
@@ -93,21 +95,52 @@ const App = () => {
           </ProtectedRoute>
         } />
        
-        
-        <Route path="/rto" element={
-       
-            <RTO />
-         
+         <Route path="/newshift" element={
+          <ProtectedRoute>
+            <NewShift />
+          </ProtectedRoute>
         } />
-        <Route path="/newshift" element={ <NewShift />} />
-        <Route path="/schedule" element={<Schedule />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/shiftdash" element={<ShiftDashboard />} />
-        <Route path="/shiftmodal" element={<ShiftModal />} />
-        <Route path="/request" element={<ShiftRequest />} />
-        <Route path="/user" element={<UserMangement />} />
-     
+        <Route path="/schedule" element={
+          <ProtectedRoute>
+            <Schedule />
+          </ProtectedRoute>
+        } />
+        <Route path="/test" element={
+          <ProtectedRoute>
+            <Test />
+          </ProtectedRoute>
+        } />
+        <Route path="/shiftdash" element={
+          <ProtectedRoute>
+            <ShiftDashboard />
+          </ProtectedRoute>
+        } />
+        <Route path="/shiftmodal" element={
+          <ProtectedRoute>
+            <ShiftModal />
+          </ProtectedRoute>
+        } />
+        <Route path="/request" element={
+          <ProtectedRoute>
+            <ShiftRequest />
+          </ProtectedRoute>
+        } />
+        <Route path="/users" element={
+          <ProtectedRoute>
+            <UserMangement />
+          </ProtectedRoute>
+        } />
+        <Route path="/userprofile" element={
+          <ProtectedRoute>
+            <UserProfile />
+          </ProtectedRoute>
+        } />
+        <Route path="/shiftManagement" element={
+          <ProtectedRoute>
+            <ShiftManagement />
+          </ProtectedRoute>
+} />
+
       </Routes>
     </BrowserRouter>
   );
