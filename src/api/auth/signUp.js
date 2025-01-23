@@ -22,11 +22,16 @@ export async function signUp(email, password, metadata) {
     return { success: false, error: 'Sign-up failed' };
   }
 
-  const profileResponse = await createProfile(data.user.id, metadata); // Pass user.id as user_id
+  const profileData = {
+    ...metadata,
+    email: email,  
+  };
+
+  const profileResponse = await createProfile(data.user.id, profileData);
   if (!profileResponse.success) {
     console.error('Error creating profile:', profileResponse.error);
     return { success: false, error: profileResponse.error };
   }
 
-  return { success: true, user: data.users };
+  return { success: true, user: data.user };
 }
