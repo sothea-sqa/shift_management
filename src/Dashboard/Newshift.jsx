@@ -1,5 +1,4 @@
-import React from 'react';
-import Sidebar from '../components/sidebars';
+import React from 'react'
 
 const NewShift = () => {
   return (
@@ -46,4 +45,4 @@ const NewShift = () => {
   );
 };
 
-export default NewShift;
+export default NewShift

@@ -6,8 +6,10 @@ import LogIn from './pages/Authentication/LogIn';
 import SignUp from './pages/Authentication/SignUp';
 import Test from './pages/test'
 import ShiftDashboard from './Dashboard/ShiftDashboard';
-import ShiftModal from './ShiftChange/ShiftModal';
-
+import ShiftModal from './ShiftChange/ShiftModal';import Shift from "./pages/schedules/shift";
+import M_dashboard from './Dashboard/M_dashboard';
+import Handlers from './Dashboard/Handlers';
+import DayOff from './Dashboard/DayOff';
 import InfoSchedule from './pages/schedules/info_schedule';
 import NewShift from './Dashboard/Newshift';
 
