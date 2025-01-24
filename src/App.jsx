@@ -5,14 +5,17 @@ import Schedule from "./pages/schedules/schedules";
 import LogIn from './pages/Authentication/LogIn';
 import SignUp from './pages/Authentication/SignUp';
 import Test from './pages/test'
-import Shift from "./pages/schedules/shift";
-import M_dashboard from './Dashboard/M_dashboard';
-import Handlers from './Dashboard/Handlers';
-import DayOff from './Dashboard/DayOff';
-import RTO from './Dashboard/RTO';
+import ShiftDashboard from './Dashboard/ShiftDashboard';
+import ShiftModal from './ShiftChange/ShiftModal';
+
 import InfoSchedule from './pages/schedules/info_schedule';
 import NewShift from './Dashboard/Newshift';
+
 import ProtectedRoute from './components/ProtectedRoute';
+import UserMangement from './pages/UserManagement/UserMangement';
+import UserProfile from './pages/UserManagement/UserProfile';
+import ShiftManagement from './ShiftManagement/ShiftManagement';
+
 
 const PublicRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -50,11 +53,13 @@ const AuthGuard = ({ children }) => {
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 
+
+
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path="/" element={
           <PublicRoute>
             <LogIn />
@@ -82,41 +87,57 @@ const App = () => {
             <Test />
           </ProtectedRoute>
         } />
-        <Route path="/shift" element={
-          <ProtectedRoute>
-            <Shift />
-          </ProtectedRoute>
-        } />
-        <Route path="/dash" element={
-          <ProtectedRoute>
-            <M_dashboard/>
-          </ProtectedRoute>
-        } />
+     
         <Route path="/infoschedule" element={
           <ProtectedRoute>
             <InfoSchedule/>
           </ProtectedRoute>
         } />
-        <Route path="/handlers" element={
-          <ProtectedRoute>
-            <Handlers/>
-          </ProtectedRoute>
-        } />
-        <Route path="/dayoff" element={
-          <ProtectedRoute>
-            <DayOff/>
-          </ProtectedRoute>
-        } />
-        <Route path="/rto" element={
-          <ProtectedRoute>
-            <RTO />
-          </ProtectedRoute>
-        } />
-        <Route path="/newshift" element={
-          <ProtectedRoute>
-            <NewShift />
-          </ProtectedRoute>
-        } />
+       
+        
+      
+              <Route path="/newshift" element={
+        <ProtectedRoute>
+          <NewShift />
+        </ProtectedRoute>
+      } />
+      <Route path="/schedule" element={
+        <ProtectedRoute>
+          <Schedule />
+        </ProtectedRoute>
+      } />
+      <Route path="/test" element={
+        <ProtectedRoute>
+          <Test />
+        </ProtectedRoute>
+      } />
+      <Route path="/shiftdash" element={
+        <ProtectedRoute>
+          <ShiftDashboard />
+        </ProtectedRoute>
+      } />
+      <Route path="/shiftmodal" element={
+        <ProtectedRoute>
+          <ShiftModal />
+        </ProtectedRoute>
+      } />
+     
+      <Route path="/users" element={
+        <ProtectedRoute>
+          <UserMangement />
+        </ProtectedRoute>
+      } />
+      <Route path="/userprofile" element={
+        <ProtectedRoute>
+          <UserProfile />
+        </ProtectedRoute>
+      } />
+      <Route path="/shiftManagement" element={
+        <ProtectedRoute>
+          <ShiftManagement />
+        </ProtectedRoute>
+} />
+
       </Routes>
     </BrowserRouter>
   );
