@@ -1,35 +1,27 @@
 import React from "react";
 import Sidebar from "../../components/sidebars";
-
 const UserProfile = () => {
   return (
+    
     <div className="flex h-screen">
-
      <Sidebar/>
 
+     <div
+    class="w-full h-screen flex flex-col  bg-white shadow-xl  text-gray-900">
+    <div class=" h-48 w-full overflow-hidden">
+        <img class="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'/>
+    </div>
+    <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+        <img class="object-cover object-center h-32" src='https://static.wikia.nocookie.net/bt21/images/3/3b/Chimmy.png/revision/latest?cb=20240118230939' alt='Woman looking front'/>
+    </div>
+    <div class="text-center mt-2">
+        <h2 class="font-semibold">Chilly</h2>
+        <p class="text-gray-500">chilly@gmail.com</p>
+        <h5 className="mt-3">0987654345678</h5>
+    </div>
     
-      <main className="flex-1  bg-gray-100 p-6">
-        <div className=" ">
-          <div className="flex items-center justify-center">
-            <div className="w-96 h-96 bg-gray-300 rounded"><img src="https://www.auroraworld.co.uk/cdn/shop/products/61370_1000x.jpg?v=1613727034" alt="" /></div>
-            <div className="mt-16 mx-4">
-              <h1 className=" font-bold">Chuon Khannchy</h1>
-              <p className="text-gray-500 mx-6">Chuonkhannchy0@gmail.com</p>
-              <div className="flex mt-9 justify-between">
-              <span className="font-semibold">Role</span>
-              <span>Tech</span>
-            </div>
-            <div className="flex mt-9 justify-between">
-              <span className="font-semibold ">Contact</span>
-              <span>09876567867567</span>
-            </div>
-            </div>
-          </div>
-          <div className="mt-4 space-y-2">
-           
-          </div>
-        </div>
-      </main>
+</div>
+
     </div>
   );
 };

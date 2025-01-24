@@ -7,14 +7,13 @@ import SignUp from './pages/Authentication/SignUp';
 import Test from './pages/test'
 import ShiftDashboard from './Dashboard/ShiftDashboard';
 import ShiftModal from './ShiftChange/ShiftModal';
-
 import InfoSchedule from './pages/schedules/info_schedule';
 import NewShift from './Dashboard/Newshift';
-
 import ProtectedRoute from './components/ProtectedRoute';
 import UserMangement from './pages/UserManagement/UserMangement';
 import UserProfile from './pages/UserManagement/UserProfile';
 import ShiftManagement from './ShiftManagement/ShiftManagement';
+import AllRequest from './ShiftChange/AllRequest';
 
 
 const PublicRoute = ({ children }) => {
@@ -135,6 +134,11 @@ const App = () => {
       <Route path="/shiftManagement" element={
         <ProtectedRoute>
           <ShiftManagement />
+        </ProtectedRoute>
+} />
+  <Route path="/request" element={
+        <ProtectedRoute>
+          <AllRequest />
         </ProtectedRoute>
 } />
 

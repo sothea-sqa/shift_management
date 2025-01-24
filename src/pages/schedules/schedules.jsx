@@ -15,11 +15,10 @@ const Schedules = () => {
 
   const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzeWVueXJ6bnN0c3R5bGt4Y2JvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNjQxMDU5NiwiZXhwIjoyMDUxOTg2NTk2fQ.NY0eG-1sEEjtF_y_x3MZBF7_E3ymykog-8u0ZiWDDcI';
 
-  // Function to fetch data from Supabase API
   const fetchScheduleData = async (date) => {
     const utcDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
       .toISOString()
-      .split('T')[0]; // Format as 'YYYY-MM-DD'
+      .split('T')[0]; 
   
     const url = `https://psyenyrznststylkxcbo.supabase.co/functions/v1/daily_schedule?date=${utcDate}`;
     
