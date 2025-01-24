@@ -1,42 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Sidebar from '../components/sidebars';
-import ShiftModal from '../ShiftChange/ShiftModal'; 
+import React from 'react'
 
 const Handlers = () => {
-  const navigate = useNavigate(); 
-  const [isModalOpen, setIsModalOpen] = useState(false); 
-  const modalRef = useRef(null); 
-
-  const handleRowClick = () => {
-    setIsModalOpen(true); 
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false); 
-  };
-
-  const handleButtonClick = (e) => {
-    e.stopPropagation(); 
-  };
-
-  
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
-        handleCloseModal();
-      }
-    };
-
-   
-    document.addEventListener('mousedown', handleClickOutside);
-
-  
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   return (
     <div>
       <div className="bg-white rounded-lg shadow overflow-hidden">
@@ -100,4 +64,4 @@ const Handlers = () => {
   );
 };
 
-export default Handlers;
+export default Handlers
