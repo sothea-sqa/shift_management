@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../components/sidebars";
 
-const Dashboard = () => {
+const UserProfile = () => {
   return (
     <div className="flex h-screen">
 
@@ -34,4 +34,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default UserProfile;

@@ -8,11 +8,9 @@ const ShiftManagement = () => {
 
   const handleShiftClick = (shift) => {
     console.log(`Shift clicked: ${shift}`);
-    // You can handle your logic when a shift is clicked
+   
   };
-
   const getShiftButtons = (shift) => {
-    // Split "9:00 - 17:00" or any similar shift into separate buttons for start and end time
     const shiftParts = shift.split(" - ");
     if (shiftParts.length === 2) {
       return (
@@ -33,7 +31,7 @@ const ShiftManagement = () => {
       );
     }
 
-    // If it's not a time range, return the shift as it is
+  
     const buttonClass = shift === "Vacation"
       ? "bg-yellow-100 text-yellow-600"
       : shift === "Medical Leave"
@@ -54,10 +52,10 @@ const ShiftManagement = () => {
 
   return (
     <div className="grid grid-cols-5 h-screen">
-      {/* Sidebar */}
+
       <Sidebar />
 
-      <div className="col-span-4 bg-white p-4 overflow-hidden">
+      <div className="col-span-4 bg-white  p-4 overflow-hidden">
         <div className="flex justify-between items-center mb-4">
           <input
             type="date"
